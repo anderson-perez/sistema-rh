@@ -39,7 +39,7 @@ typedef struct dados_func {
 // Define membro da lista (no/nodo)
 typedef struct no {
     dados_func_t dados;
-    dados_func_t *proximo;
+    struct no *proximo;
 } no_t;
 
 // Define tipo lista;
