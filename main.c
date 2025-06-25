@@ -17,6 +17,9 @@ int main()
     // Criar a lista
     inicializa_lista_rh(&lista_rh);
 
+    // Carrega dados arquivo
+    ler_registros_rh_arquivo_binario("dados_rh.bin", &lista_rh);
+
 
     do {
         opcao = menu_principal();
