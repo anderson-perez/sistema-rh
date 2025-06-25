@@ -7,6 +7,7 @@ void listar_todos_registros_rh(no_t *ptr_lista_rh)
         mostrar_dados_registro_rh(ptr_lista_rh);
         ptr_lista_rh = ptr_lista_rh->proximo;
     }
+    msg_press_enter();
 }
 
 void mostrar_dados_registro_rh(no_t *registro)

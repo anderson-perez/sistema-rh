@@ -19,3 +19,9 @@ void limpar_tela()
 {
     system("clear");
 }
+
+void msg_press_enter()
+{
+    printf("Pressione ENTER para retornar ao MENU RELATORIOS\n");
+    getchar();
+}
