@@ -22,6 +22,14 @@ void limpar_tela()
 
 void msg_press_enter()
 {
+    printf("\n-----------------------------------------------\n");
     printf("Pressione ENTER para retornar ao MENU RELATORIOS\n");
     getchar();
+}
+
+void msg_cabecalho(string msg)
+{
+    printf("----------------------------------------------\n");
+    printf("%s\n", msg);
+    printf("----------------------------------------------\n\n");
 }

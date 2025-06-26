@@ -30,11 +30,14 @@ int main()
                     do {
                         opcao_cadastro = menu_cadastros();
                         switch (opcao_cadastro) {
-                            case 1: aux = novo_registro_rh();
+                            
+                            case 1: break;
+                            
+                            case 2: aux = novo_registro_rh();
                                     insere_registro_inicio_rh(aux, &lista_rh);
                                     break;
 
-                            case 2: break;
+                            
                         }
                     } while (opcao_cadastro != 0);
 
@@ -44,10 +47,12 @@ int main()
                         opcao_relatorios = menu_relatorios();
                         switch (opcao_relatorios) {
                                     
-                            case 1: listar_todos_registros_rh(lista_rh.cabeca);
+                            case 1: break;
+
+                            case 2: listar_todos_registros_rh(lista_rh.cabeca);
                                     break;
 
-                            case 2: break;
+                            
                         }
 
                     } while (opcao_relatorios != 0);

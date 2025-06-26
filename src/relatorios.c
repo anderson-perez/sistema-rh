@@ -3,6 +3,10 @@
 
 void listar_todos_registros_rh(no_t *ptr_lista_rh)
 {
+    limpar_tela();
+
+    msg_cabecalho("Relatorio de Funcionarios");
+
     while (ptr_lista_rh) {
         mostrar_dados_registro_rh(ptr_lista_rh);
         ptr_lista_rh = ptr_lista_rh->proximo;

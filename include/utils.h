@@ -8,5 +8,6 @@ void retirar_enter(string str);
 void to_upper(string str);
 void limpar_tela();
 void msg_press_enter();
+void msg_cabecalho(string msg);
 
 #endif
