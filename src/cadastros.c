@@ -68,7 +68,7 @@ no_t *novo_registro_rh()
 
     // Data da admissao
     printf("Data da admissao...........: ");
-    scanf("%hhi/%hhi/%hhi", &novo->dados.admissao.dia, &novo->dados.admissao.mes, &novo->dados.admissao.ano);
+    scanf("%d/%d/%d", &novo->dados.admissao.dia, &novo->dados.admissao.mes, &novo->dados.admissao.ano);
 
     // Preenche demissão com zeros
     novo->dados.demissao.dia = 0;

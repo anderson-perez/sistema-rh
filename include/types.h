@@ -18,9 +18,9 @@ typedef enum {ATIVO = 1, INATIVO = 2} status_t;
 
 // Define data
 typedef struct data {
-    uint8_t dia;
-    uint8_t mes;
-    uint8_t ano;
+    int dia;
+    int mes;
+    int ano;
 } data_t;
 
 // Define o tipo dados funcionario

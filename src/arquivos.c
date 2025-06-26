@@ -41,6 +41,7 @@ void ler_registros_rh_arquivo_binario(string nome_arq, lista_t *lista_rh)
         no_t *aux = (no_t*)malloc(sizeof(no_t));
         fread(aux, sizeof(no_t), 1, fp);
         if (!feof(fp)) { 
+            aux->proximo = NULL;
             insere_registro_inicio_rh(aux, lista_rh);
         }
         else {
