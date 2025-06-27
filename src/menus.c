@@ -14,6 +14,7 @@ uint8_t menu_principal()
     printf("1.Cadastros\n");
     printf("2.Relatorios\n");
     printf("3.Consultas\n");
+    printf("4.Arquivos\n");
     printf("0.Sair do programa\n");
     printf("::: ");
     scanf("%hhi", &opcao);
@@ -31,6 +32,8 @@ uint8_t menu_cadastros()
     printf("------------------\n");
     printf("1.Cadastro de usuarios do sistema\n");
     printf("2.Cadastro de pessoas (funcionarios)\n");
+    printf("3.Ordenar em ordem alfabetica\n");
+    printf("4.Inativar funcionario\n");
     printf("0.Retornar ao menu principal\n");
     printf("::: ");
     scanf("%hhi", &opcao);
@@ -49,6 +52,8 @@ uint8_t menu_relatorios()
     printf("------------------\n");
     printf("1.Listar dados dos usuarios do sistema\n");
     printf("2.Listar cadastro de funcionarios\n");
+    printf("3.Listar funcionarios por faixa salarial\n");
+    printf("4.Mostrar funcionarios ativos\n");
     printf("0.Retornar ao menu principal\n");
     printf("::: ");
     scanf("%hhi", &opcao);
@@ -59,5 +64,35 @@ uint8_t menu_relatorios()
 
 uint8_t menu_consultas()
 {
+    limpar_tela();
 
+    uint8_t opcao;
+
+    printf("| MENU CONSULTAS |\n");
+    printf("------------------\n");
+    printf("1.Localizar pessoa por nome (funcionario)\n");
+    printf("0.Retornar ao menu principal\n");
+    printf("::: ");
+    scanf("%hhi", &opcao);
+    getchar();
+
+    return opcao;    
+}
+
+uint8_t manipulacao_arquivos()
+{
+    limpar_tela();
+
+    uint8_t opcao;
+
+    printf("| MENU MANIPULACAO DE ARQUIVOS |\n");
+    printf("------------------\n");
+    printf("1.Exportar dados para aquivo texto\n");
+    printf("2.Exportar dados para formato csv (Excel)\n");
+    printf("0.Retornar ao menu principal\n");
+    printf("::: ");
+    scanf("%hhi", &opcao);
+    getchar();
+
+    return opcao;    
 }

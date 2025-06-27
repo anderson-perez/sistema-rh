@@ -31,3 +31,46 @@ void mostrar_dados_registro_rh(no_t *registro)
     printf("Status.....................: %d\n", registro->dados.status);
 
 }
+
+void relatorio_faixa_salarial(no_t *ptr_lista_rh, float minSal, float maxSal)
+{
+    no_t *ptr_atual = ptr_lista_rh;
+    int contador = 0;
+
+    printf("Funcionarios com salario entre R$ %.2f e R$ %.2f: \n\n", minSal, maxSal);
+
+    //percorrer a lista
+    while(ptr_atual)
+    {
+        //verificar se o salario esta dentro da faixa
+        if (ptr_atual->dados.salario >= minSal && ptr_atual->dados.salario <= maxSal)
+        {
+            mostrar_dados_registro_rh(ptr_atual);
+            printf("\n======================================\n");
+            contador++;
+        }
+        ptr_atual = ptr_atual->proximo;
+    }
+
+    if (contador<1)
+    {
+        printf("Nenhum funcionario encontrado dentro desta faixa\n");
+        msg_press_enter();
+    }
+}
+
+void mostrar_funcionarios_ativos(no_t *ptr_lista_rh)
+{
+    limpar_tela();
+
+    msg_cabecalho("Relatorio de Funcionarios Ativos");
+
+    while (ptr_lista_rh) {
+        if(ptr_lista_rh->dados.status == ATIVO){
+            mostrar_dados_registro_rh(ptr_lista_rh);            
+            printf("\n");
+        }
+        ptr_lista_rh = ptr_lista_rh->proximo;
+    }
+    msg_press_enter();
+}

@@ -107,3 +107,9 @@ void excluir_registro_rh(no_t *registro, lista_t *lista_rh)
 {
 
 }
+
+void inativar_funcionario(no_t *registro, data_t data)
+{
+    registro->dados.status = INATIVO;
+    registro->dados.demissao = data;
+}

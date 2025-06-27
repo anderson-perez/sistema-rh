@@ -5,7 +5,7 @@ INCLUDE = ./INCLUDE
 OBJETOS = ./objs
 
 all: obj
-	$(CC) $(OBJETOS)/utils.o $(OBJETOS)/menus.o $(OBJETOS)/arquivos.o $(OBJETOS)/cadastros.o $(OBJETOS)/relatorios.o $(OBJETOS)/main.o -o $(TARGET)
+	$(CC) $(OBJETOS)/utils.o $(OBJETOS)/menus.o $(OBJETOS)/arquivos.o $(OBJETOS)/cadastros.o $(OBJETOS)/relatorios.o $(OBJETOS)/consultas.o $(OBJETOS)/main.o -o $(TARGET)
 
 
 obj:
@@ -14,6 +14,7 @@ obj:
 	$(CC) -c $(SOURCE)/arquivos.c -o $(OBJETOS)/arquivos.o
 	$(CC) -c $(SOURCE)/cadastros.c -o $(OBJETOS)/cadastros.o
 	$(CC) -c $(SOURCE)/relatorios.c -o $(OBJETOS)/relatorios.o
+	$(CC) -c $(SOURCE)/consultas.c -o $(OBJETOS)/consultas.o
 	$(CC) -c main.c -o $(OBJETOS)/main.o
 
 

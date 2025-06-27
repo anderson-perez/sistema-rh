@@ -51,3 +51,39 @@ void ler_registros_rh_arquivo_binario(string nome_arq, lista_t *lista_rh)
 
     fclose(fp);
 }
+
+void exportar_dados_para_arquivo_texto(string nome_arq, no_t *lista_rh)
+{
+    FILE *fp = fopen(nome_arq, "w");
+
+    if (fp == NULL){
+        printf("erro ao abrir o arquivo %s\n", nome_arq);
+        return;
+    }
+    
+    fprintf(fp, "----------------------------------\n");
+    fprintf(fp, "Relatorio Completo de Funcionarios\n");
+    fprintf(fp, "----------------------------------\n\n");
+
+    while(lista_rh) {
+        fprintf(fp, "Codigo.....................: %hhi\n", lista_rh->dados.codigo);
+        fprintf(fp, "Nome da pessoa.............: %s\n", lista_rh->dados.nome);
+        fprintf(fp, "Email da pessoa............: %s\n", lista_rh->dados.email);
+        fprintf(fp, "CPF da pessoa..............: %s\n", lista_rh->dados.cpf);
+        fprintf(fp, "Funcao.....................: %s\n", lista_rh->dados.funcao);
+        fprintf(fp, "Salario....................: %.2f\n", lista_rh->dados.salario);
+        fprintf(fp, "Data da admissao...........: %d/%d/%d\n", lista_rh->dados.admissao.dia, lista_rh->dados.admissao.mes, lista_rh->dados.admissao.ano);
+        
+        if (lista_rh->dados.status == INATIVO) {
+            fprintf(fp, "Data da demissao...........: %hhd/%hhd/%hhd\n", lista_rh->dados.demissao.dia, lista_rh->dados.demissao.mes, lista_rh->dados.demissao.ano);
+        }
+        fprintf(fp, "Status.....................: %d\n", lista_rh->dados.status);
+
+        fprintf(fp, "\n");
+        
+        lista_rh = lista_rh->proximo;
+    }    
+
+    fclose(fp); 
+}
+     
