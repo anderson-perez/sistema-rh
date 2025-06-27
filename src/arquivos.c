@@ -75,7 +75,7 @@ void exportar_dados_para_arquivo_texto(string nome_arq, no_t *lista_rh)
         fprintf(fp, "Data da admissao...........: %d/%d/%d\n", lista_rh->dados.admissao.dia, lista_rh->dados.admissao.mes, lista_rh->dados.admissao.ano);
         
         if (lista_rh->dados.status == INATIVO) {
-            fprintf(fp, "Data da demissao...........: %hhd/%hhd/%hhd\n", lista_rh->dados.demissao.dia, lista_rh->dados.demissao.mes, lista_rh->dados.demissao.ano);
+            fprintf(fp, "Data da demissao...........: %d/%d/%d\n", lista_rh->dados.demissao.dia, lista_rh->dados.demissao.mes, lista_rh->dados.demissao.ano);
         }
         fprintf(fp, "Status.....................: %d\n", lista_rh->dados.status);
 

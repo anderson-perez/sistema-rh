@@ -26,7 +26,7 @@ void mostrar_dados_registro_rh(no_t *registro)
     printf("Salario....................: %.2f\n", registro->dados.salario);
     printf("Data da admissao...........: %d/%d/%d\n", registro->dados.admissao.dia, registro->dados.admissao.mes, registro->dados.admissao.ano);
     if (registro->dados.status == INATIVO) {
-        printf("Data da demissao...........: %hhd/%hhd/%hhd\n", registro->dados.demissao.dia, registro->dados.demissao.mes, registro->dados.demissao.ano);
+        printf("Data da demissao...........: %d/%d/%d\n", registro->dados.demissao.dia, registro->dados.demissao.mes, registro->dados.demissao.ano);
     }
     printf("Status.....................: %d\n", registro->dados.status);
 
@@ -66,11 +66,14 @@ void mostrar_funcionarios_ativos(no_t *ptr_lista_rh)
     msg_cabecalho("Relatorio de Funcionarios Ativos");
 
     while (ptr_lista_rh) {
+
         if(ptr_lista_rh->dados.status == ATIVO){
             mostrar_dados_registro_rh(ptr_lista_rh);            
             printf("\n");
         }
+
         ptr_lista_rh = ptr_lista_rh->proximo;
     }
+
     msg_press_enter();
 }
