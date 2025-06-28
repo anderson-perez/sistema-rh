@@ -87,3 +87,31 @@ void exportar_dados_para_arquivo_texto(string nome_arq, no_t *lista_rh)
     fclose(fp); 
 }
      
+void exportar_dados_para_arquivo_csv(string nome_arq, no_t *lista_rh)
+{
+    FILE *fp = fopen(nome_arq, "w");
+
+    if (fp == NULL){
+        printf("erro ao abrir o arquivo %s\n", nome_arq);
+        return;
+    }
+    
+    fprintf(fp, "CODIGO;NOME;Email;CPF;FUNCAO;SALARIO;ADMISSAO;DEMISSAO;STATUS\n");
+
+    while(lista_rh) {
+        fprintf(fp, "%hhi;", lista_rh->dados.codigo);
+        fprintf(fp, "%s;", lista_rh->dados.nome);
+        fprintf(fp, "%s;", lista_rh->dados.email);
+        fprintf(fp, "%s;", lista_rh->dados.cpf);
+        fprintf(fp, "%s;", lista_rh->dados.funcao);
+        fprintf(fp, "%.2f;", lista_rh->dados.salario);
+        fprintf(fp, "%d/%d/%d;", lista_rh->dados.admissao.dia, lista_rh->dados.admissao.mes, lista_rh->dados.admissao.ano);
+        fprintf(fp, "%d/%d/%d;", lista_rh->dados.demissao.dia, lista_rh->dados.demissao.mes, lista_rh->dados.demissao.ano);
+        fprintf(fp, "%d\n", lista_rh->dados.status);
+        
+        lista_rh = lista_rh->proximo;
+    }    
+
+    fclose(fp); 
+
+}

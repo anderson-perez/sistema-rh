@@ -1,5 +1,7 @@
 #include "../include/relatorios.h"
 #include <stdio.h>
+#include <string.h>
+#include <stdbool.h>
 
 void listar_todos_registros_rh(no_t *ptr_lista_rh)
 {
@@ -76,4 +78,32 @@ void mostrar_funcionarios_ativos(no_t *ptr_lista_rh)
     }
 
     msg_press_enter();
+}
+
+void listar_funcionarios_por_funcao(string funcao, no_t *ptr_lista_rh)
+{
+    bool flag = false;
+
+    limpar_tela();
+
+    msg_cabecalho("Relatorio de Funcionarios por Funcao");
+
+    while (ptr_lista_rh) {
+
+        if(strcmp(funcao, ptr_lista_rh->dados.funcao) == 0){
+            mostrar_dados_registro_rh(ptr_lista_rh);            
+            printf("\n");
+
+            flag = true;
+        }
+
+        ptr_lista_rh = ptr_lista_rh->proximo;
+    }
+
+    if (!flag) {
+        printf("Nao ha funcionarios exercendo a funcao %s\n", funcao);
+    }
+
+    msg_press_enter();
+
 }

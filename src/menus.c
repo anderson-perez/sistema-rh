@@ -32,8 +32,9 @@ uint8_t menu_cadastros()
     printf("------------------\n");
     printf("1.Cadastro de usuarios do sistema\n");
     printf("2.Cadastro de pessoas (funcionarios)\n");
-    printf("3.Ordenar em ordem alfabetica\n");
+    printf("3.Ordenar funcionarios (A-Z)\n");
     printf("4.Inativar funcionario\n");
+    printf("5.Excluir funcionario\n");
     printf("0.Retornar ao menu principal\n");
     printf("::: ");
     scanf("%hhi", &opcao);
@@ -53,7 +54,8 @@ uint8_t menu_relatorios()
     printf("1.Listar dados dos usuarios do sistema\n");
     printf("2.Listar cadastro de funcionarios\n");
     printf("3.Listar funcionarios por faixa salarial\n");
-    printf("4.Mostrar funcionarios ativos\n");
+    printf("4.Listar funcionarios ativos\n");
+    printf("5.Listar funcionarios por funcao\n");
     printf("0.Retornar ao menu principal\n");
     printf("::: ");
     scanf("%hhi", &opcao);

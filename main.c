@@ -13,7 +13,7 @@ int main()
     uint8_t opcao, sub_menu;
     no_t *aux = NULL;
     float salario_minimo, salario_maximo;
-    string nome_arq, nome_pessoa;
+    string nome_arq, nome_pessoa, funcao;
     char resposta;
     data_t data;
 
@@ -111,6 +111,14 @@ int main()
                                 
                             case 4: mostrar_funcionarios_ativos(lista_rh.cabeca);
                                     break;
+
+                            case 5: limpar_tela();
+                                    printf("Qual a funcao? ");
+                                    fgets(funcao, T_STR, stdin);
+                                    retirar_enter(funcao);
+                                    to_upper(funcao);
+                                    listar_funcionarios_por_funcao(funcao, lista_rh.cabeca);
+                                    break;        
                             
                         }
 
@@ -160,7 +168,13 @@ int main()
 
                                     break;
 
-                            case 2: break;
+                            case 2: limpar_tela();
+                                    msg_cabecalho("Exportar dados para arquivo do tipo texto\n");
+                                    printf("Qual o nome do arquivo de saida (extensao .csv)? ");
+                                    fgets(nome_arq, T_STR, stdin);
+                                    retirar_enter(nome_arq);
+                                    exportar_dados_para_arquivo_csv(nome_arq, lista_rh.cabeca);
+                                    break;
                         }
 
                     } while (sub_menu != SAIR);

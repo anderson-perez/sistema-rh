@@ -8,6 +8,7 @@ no_t *consulta_pessoa_por_nome(string nome, no_t *lista)
         if (strcmp(nome, lista->dados.nome) == 0) {
             return lista;
         }
+        
         lista = lista->proximo;
     }
 
