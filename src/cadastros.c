@@ -100,11 +100,44 @@ void insere_registro_inicio_rh(no_t *novo, lista_t *lista_rh)
 
 void insere_registro_fim_rh(no_t *novo, lista_t *lista_rh)
 {
+    no_t *aux = NULL;
 
+    // Define o codigo
+    novo->dados.codigo = ++lista_rh->nr_nos;
+
+    // Localiza o último registro
+    aux = localizar_ultimo_registro_rh(lista_rh->cabeca);
+
+    // A lista está vazia
+    if (aux == NULL) { 
+        lista_rh->cabeca = novo;
+    }
+    else {
+        aux->proximo = novo;
+    }
+    
 }
 
 void excluir_registro_rh(no_t *registro, lista_t *lista_rh)
 {
+    no_t *aux = lista_rh->cabeca;
+
+    // Verifica se o registro a ser excluído é o primeiro
+    if (lista_rh->cabeca == registro) {
+        lista_rh->cabeca = registro->proximo;
+        return;
+    }
+
+    // Procura qual é o registro anterior ao registro a ser excluído
+    while (aux->proximo != registro) {
+        aux = aux->proximo;
+    }
+    // Ajusta os ponteiros entre o registro anterior e o posterior do
+    // registro a ser excluído
+    aux->proximo = registro->proximo;
+
+    // Libera memória do registro a ser excluído
+    free(registro);  
 
 }
 

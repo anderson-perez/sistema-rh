@@ -35,6 +35,7 @@ void msg_cabecalho(string msg)
 }
 
 void ordenar_em_ordem_alfabetica(lista_t * lista_rh){
+    
     if(lista_rh->cabeca==NULL || lista_rh->cabeca->proximo==NULL) return;
     
     no_t * aux = lista_rh->cabeca, *aux2, temp;

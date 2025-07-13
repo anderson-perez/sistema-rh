@@ -14,3 +14,15 @@ no_t *consulta_pessoa_por_nome(string nome, no_t *lista)
 
     return NULL;
 }
+
+no_t *consulta_pessoa_por_nome_recursiva(string nome, no_t *lista)
+{
+    if (lista == NULL) return NULL;
+
+    if (strcmp(nome, lista->dados.nome) == 0) {
+        return lista;
+    }
+
+    return consulta_pessoa_por_nome_recursiva(nome, lista->proximo);
+
+}

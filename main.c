@@ -1,4 +1,6 @@
 #include <stdint.h>
+#include <stdlib.h>
+#include <string.h>
 #include "./include/menus.h"
 #include "./include/types.h"
 #include "./include/cadastros.h"
@@ -8,14 +10,31 @@
 
 #define SAIR    0
 
-int main()
+int main(int argc, char** argv)
 {
-    uint8_t opcao, sub_menu;
+    uint8_t opcao, sub_menu, politica_insercao;
     no_t *aux = NULL;
     float salario_minimo, salario_maximo;
-    string nome_arq, nome_pessoa, funcao;
+    string nome_arq, nome_arquivo_dados, nome_pessoa, funcao;
     char resposta;
     data_t data;
+
+    if (argc < 3) {
+        printf("./rh <nome_arq> -fim -inicio\n");
+        exit(0);
+    }
+
+    if (strcmp(argv[2], "-inicio") == 0) {
+        politica_insercao = 1;
+    }
+    if (strcmp(argv[2], "-fim") == 0) {
+        politica_insercao = 2;
+    }
+
+    printf("%d\n", politica_insercao);
+    msg_press_enter();
+
+    strcpy(nome_arquivo_dados, argv[1]);
 
 
     lista_t lista_rh;
@@ -24,9 +43,9 @@ int main()
     inicializa_lista_rh(&lista_rh);
 
     // Carrega dados arquivo
-    ler_registros_rh_arquivo_binario("dados_rh.bin", &lista_rh);
+    ler_registros_rh_arquivo_binario(nome_arquivo_dados, &lista_rh);
 
-    ordenar_em_ordem_alfabetica(&lista_rh);
+    //ordenar_em_ordem_alfabetica(&lista_rh);
 
 
     do {
@@ -41,8 +60,13 @@ int main()
                             
                             case 1: break;
                             
-                            case 2: aux = novo_registro_rh();
-                                    insere_registro_inicio_rh(aux, &lista_rh);
+                            case 2: aux = novo_registro_rh();                                    
+                                    if (politica_insercao == 1) {
+                                        insere_registro_inicio_rh(aux, &lista_rh);
+                                    }
+                                    if (politica_insercao == 2) {
+                                        insere_registro_fim_rh(aux, &lista_rh);
+                                    }
                                     break;
 
                             case 3: 
@@ -55,7 +79,8 @@ int main()
                                     retirar_enter(nome_pessoa);
                                     to_upper(nome_pessoa);
 
-                                    aux = consulta_pessoa_por_nome(nome_pessoa, lista_rh.cabeca);
+                                    // aux = consulta_pessoa_por_nome(nome_pessoa, lista_rh.cabeca);
+                                    aux = consulta_pessoa_por_nome_recursiva(nome_pessoa, lista_rh.cabeca);
 
                                     if (aux) {
                                         mostrar_dados_registro_rh(aux);
@@ -65,6 +90,29 @@ int main()
                                             printf("Informe a data do desligamento: ");
                                             scanf("%d/%d/%d", &data.dia, &data.mes, &data.ano);
                                             inativar_funcionario(aux, data);
+                                        }
+                                    }
+                                    else {
+                                        printf("%s nao esta cadastrado!\n", nome_pessoa);
+                                        msg_press_enter();
+                                    }
+                                    break;
+
+                            case 5: limpar_tela();
+                                    printf("Qual o nome do funcionario a ser excluído? ");
+                                    fgets(nome_pessoa, T_STR, stdin);
+                                    retirar_enter(nome_pessoa);
+                                    to_upper(nome_pessoa);
+
+                                    // aux = consulta_pessoa_por_nome(nome_pessoa, lista_rh.cabeca);
+                                    aux = consulta_pessoa_por_nome_recursiva(nome_pessoa, lista_rh.cabeca);
+
+                                    if (aux) {
+                                        mostrar_dados_registro_rh(aux);
+                                        printf("\nConfirma a exclusao do funcionario (S/N)? ");
+                                        scanf("%c", &resposta);
+                                        if (resposta == 'S' || resposta == 's') {
+                                            excluir_registro_rh(aux, &lista_rh);
                                         }
                                     }
                                     else {
@@ -135,7 +183,8 @@ int main()
                                     retirar_enter(nome_pessoa);
                                     to_upper(nome_pessoa);
 
-                                    aux = consulta_pessoa_por_nome(nome_pessoa, lista_rh.cabeca);
+                                    // aux = consulta_pessoa_por_nome(nome_pessoa, lista_rh.cabeca);
+                                    aux = consulta_pessoa_por_nome_recursiva(nome_pessoa, lista_rh.cabeca);
 
                                     if (aux) {
                                         mostrar_dados_registro_rh(aux);
@@ -184,7 +233,7 @@ int main()
     } while (opcao != SAIR);
 
     if (!is_lista_rh_vazia(lista_rh.cabeca)) {
-        salvar_registros_rh_arquivo_binario("dados_rh.bin", lista_rh.cabeca);
+        salvar_registros_rh_arquivo_binario(nome_arquivo_dados, lista_rh.cabeca);
     }
 
     return 0;
